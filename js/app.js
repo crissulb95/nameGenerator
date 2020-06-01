@@ -28,6 +28,23 @@ function cargarNombres(e) {
         url += `results=${numero}`;
     }
 
+    //con FetchAPI
+    fetch(url)
+        .then(res => res.json())
+        .then(function(data) {
+            let htmlNombres = '';
+                htmlNombres += `<ul class="lista">`;
+
+            data.results.map(function(persona) { 
+                htmlNombres += `<li>${persona.name.first} </li>`;
+            });
+            
+            htmlNombres += `</ul>`;
+
+            document.getElementById('resultado').innerHTML = htmlNombres;
+        })
+        .catch(() => console.log('there\'s an error'));
+    /*AJAX AJAX AJAX AJAX AJAX AJAX
     
     const xhr = new XMLHttpRequest();
 
@@ -52,7 +69,7 @@ function cargarNombres(e) {
     };
 
     xhr.send();
-
+*/
 
 }
 
